@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Araguari</title>
+    <style>
+        /* RESET E CONFIGURAÇÕES GLOBAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0d47a1;
+            --primary-dark: #082e6b;
+            --primary-light: #5472d3;
+            --secondary: #2e7d32;
+            --accent: #ff9800;
+            --light: #f5f7fa;
+            --dark: #1a237e;
+            --gray: #5f6368;
+            --light-gray: #dadce0;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 20px auto;
+            border-radius: 3px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(13, 71, 161, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* HEADER E NAVEGAÇÃO */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 55px;
+            margin-right: 12px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .login-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 8px;
+            margin-left: 20px;
+            font-weight: 600;
+        }
+
+        .login-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(13, 71, 161, 0.85), rgba(8, 46, 107, 0.9)), url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* SERVIÇOS */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .service-content p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        /* SOBRE */
+        .about {
+            background-color: var(--white);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .features {
+            margin-top: 35px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .feature i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 1.3rem;
+        }
+
+        .feature p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* EQUIPE */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 35px;
+        }
+
+        .team-member {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+        }
+
+        .member-img {
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 25px;
+        }
+
+        .member-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .member-info p {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .member-info .specialty {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* CONTATO */
+        .contact {
+            background-color: var(--white);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.7rem;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            margin-right: 18px;
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+
+        .contact-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .contact-form {
+            background-color: var(--light);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form h3 {
+            font-size: 1.7rem;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 160px;
+            resize: vertical;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 70px 0 25px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 45px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-col p {
+            color: var(--light-gray);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.05rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-light);
+            padding-left: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--light-gray);
+            font-size: 1rem;
+        }
+
+        /* ÁREA ADMINISTRATIVA */
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+
+        .admin-sidebar {
+            width: 260px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            position: fixed;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+            transition: var(--transition);
+        }
+
+        .admin-logo {
+            padding: 25px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .admin-logo h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .admin-menu {
+            padding: 25px 0;
+        }
+
+        .admin-menu ul {
+            list-style: none;
+        }
+
+        .admin-menu ul li {
+            margin-bottom: 8px;
+        }
+
+        .admin-menu ul li a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.05rem;
+        }
+
+        .admin-menu ul li a i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+
+        .admin-menu ul li a:hover,
+        .admin-menu ul li a.active {
+            background-color: rgba(255, 255, 255, 0.12);
+            border-left: 5px solid var(--accent);
+        }
+
+        .admin-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 35px;
+            background-color: var(--light);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .admin-user {
+            display: flex;
+            align-items: center;
+        }
+
+        .admin-user img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .admin-user span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            font-size: 1.7rem;
+            color: var(--white);
+        }
+
+        .stat-info h3 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .stat-info p {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .data-table {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .table-header {
+            padding: 25px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h2 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 18px 25px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        th {
+            background-color: rgba(13, 71, 161, 0.08);
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+        }
+
+        tr:hover {
+            background-color: rgba(13, 71, 161, 0.04);
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .status.confirmado {
+            background-color: rgba(46, 125, 50, 0.15);
+            color: var(--secondary);
+        }
+
+        .status.pendente {
+            background-color: rgba(255, 152, 0, 0.15);
+            color: var(--accent);
+        }
+
+        .status.cancelado {
+            background-color: rgba(234, 67, 53, 0.15);
+            color: #ea4335;
+        }
+
+        /* LOGIN */
+        .login-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+
+        .login-side {
+            flex: 1;
+            background: linear-gradient(rgba(13, 71, 161, 0.85), rgba(8, 46, 107, 0.9)), url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            padding: 50px;
+        }
+
+        .login-side-content {
+            max-width: 550px;
+        }
+
+        .login-side h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .login-side p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .login-form-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-logo h1 {
+            font-size: 2.3rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .login-logo span {
+            color: var(--secondary);
+        }
+
+        .login-logo p {
+            color: var(--gray);
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 10px;
+        }
+
+        .remember-me label {
+            font-weight: 500;
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 1100px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .admin-sidebar {
+                width: 80px;
+            }
+            
+            .admin-sidebar .menu-text {
+                display: none;
+            }
+            
+            .admin-content {
+                margin-left: 80px;
+            }
+            
+            .admin-menu ul li a {
+                justify-content: center;
+                padding: 18px;
+            }
+            
+            .admin-menu ul li a i {
+                margin-right: 0;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                width: 100%;
+                order: 3;
+                margin-top: 20px;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 12px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .login-side {
+                min-height: 350px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .admin-sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .admin-container {
+                flex-direction: column;
+                padding-top: 0;
+            }
+            
+            .admin-content {
+                margin-left: 0;
+            }
+            
+            .admin-menu ul {
+                display: flex;
+                overflow-x: auto;
+            }
+            
+            .admin-menu ul li {
+                flex-shrink: 0;
+            }
+            
+            .admin-menu ul li a {
+                padding: 12px 18px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- ÁREA PÚBLICA -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <!-- Logo placeholder -->
+                <div style="width: 55px; height: 55px; background: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">CA</div>
+                <h1>Clínica <span>Araguari</span></h1>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#team">Equipe</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                    <li><a href="login.html" class="login-btn">Área Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>Excelência em cuidados de saúde para toda a família</h2>
+            <p>Na Clínica Araguari, oferecemos atendimento médico especializado com tecnologia de ponta, equipe multidisciplinar qualificada e um compromisso genuíno com o seu bem-estar.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn">Agendar Consulta</a>
+                <a href="#services" class="btn btn-secondary">Conhecer Serviços</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Serviços</h2>
+                <p>Oferecemos uma ampla gama de especialidades médicas e exames para atender todas as suas necessidades de saúde com qualidade e agilidade.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <!-- Imagem placeholder -->
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">Consulta Médica</div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Consultas Especializadas</h3>
+                        <p>Atendimento personalizado com médicos especialistas em diversas áreas para diagnóstico preciso e tratamento eficaz.</p>
+                        <a href="#" class="btn btn-secondary">Saiba Mais</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--secondary), #4caf50); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">Exames</div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Exames Diagnósticos</h3>
+                        <p>Realizamos exames laboratoriais e de imagem com tecnologia de ponta para diagnósticos precisos e resultados rápidos.</p>
+                        <a href="#" class="btn btn-secondary">Saiba Mais</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--accent), #ffb74d); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">Vacinação</div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Vacinação</h3>
+                        <p>Serviço completo de vacinação para todas as idades, seguindo o calendário nacional de imunização com segurança e conforto.</p>
+                        <a href="#" class="btn btn-secondary">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nós</h2>
+                <p>Conheça nossa história, valores e o que nos torna referência em cuidados de saúde na região.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <!-- Imagem placeholder -->
+                    <div style="width: 100%; height: 450px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 600;">Clínica Araguari</div>
+                </div>
+                <div class="about-text">
+                    <h2>Mais de 20 anos cuidando da saúde da comunidade</h2>
+                    <p>A Clínica Araguari foi fundada em 2003 com o objetivo de oferecer atendimento médico de excelência, combinando tecnologia avançada com um atendimento humanizado e acolhedor.</p>
+                    <p>Nossa missão é promover a saúde e o bem-estar dos nossos pacientes através de um cuidado integral, preventivo e personalizado, sempre com ética e transparência.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <p>Equipe multidisciplinar altamente qualificada</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <p>Tecnologia de ponta em diagnósticos e tratamentos</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <p>Atendimento humanizado e personalizado</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <p>Convênios com as principais operadoras de saúde</p>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn">Entre em Contato</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossa Equipe</h2>
+                <p>Conheça nossos profissionais altamente qualificados e comprometidos com o seu bem-estar e saúde.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-img">
+                        <!-- Imagem placeholder -->
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">Dr. Silva</div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Carlos Silva</h3>
+                        <p>Cardiologista</p>
+                        <div class="specialty">CRM: 12345</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--secondary), #4caf50); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">Dra. Santos</div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dra. Ana Santos</h3>
+                        <p>Pediatra</p>
+                        <div class="specialty">CRM: 67890</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--accent), #ffb74d); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">Dr. Oliveira</div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Roberto Oliveira</h3>
+                        <p>Ortopedista</p>
+                        <div class="specialty">CRM: 54321</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #9c27b0, #ba68c8); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">Dra. Costa</div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dra. Mariana Costa</h3>
+                        <p>Dermatologista</p>
+                        <div class="specialty">CRM: 09876</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+                <p>Estamos à disposição para esclarecer dúvidas, agendar consultas ou ouvir suas sugestões e feedbacks.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>Av. Brasil, 1234 - Centro<br>Araguari - MG, 38440-000</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>(34) 3241-5678</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>E-mail</h4>
+                            <p>contato@clinicaaraguari.com.br</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horário de Funcionamento</h4>
+                            <p>Segunda a Sexta: 7h às 19h<br>Sábado: 8h às 13h<br>Plantão 24h para emergências</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envie uma Mensagem</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" class="form-control" placeholder="Seu nome completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" placeholder="Seu melhor e-mail">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Seu telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" class="form-control" placeholder="Sua mensagem, dúvida ou solicitação"></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Clínica Araguari</h3>
+                    <p>Cuidando da sua saúde com excelência e humanização há mais de 20 anos. Nossa missão é seu bem-estar.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#team">Nossa Equipe</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Serviços</h3>
+                    <ul>
+                        <li><a href="#">Consultas Médicas</a></li>
+                        <li><a href="#">Exames Laboratoriais</a></li>
+                        <li><a href="#">Exames de Imagem</a></li>
+                        <li><a href="#">Vacinação</a></li>
+                        <li><a href="#">Check-up Completo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Brasil, 1234 - Centro, Araguari - MG</li>
+                        <li><i class="fas fa-phone"></i> (34) 3241-5678</li>
+                        <li><i class="fas fa-envelope"></i> contato@clinicaaraguari.com.br</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Clínica Araguari. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ÁREA ADMINISTRATIVA (PRIVADA) -->
+    <div class="admin-container" style="display: none;">
+        <div class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>Clínica Araguari</h2>
+            </div>
+            <div class="admin-menu">
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> <span class="menu-text">Agendamentos</span></a></li>
+                    <li><a href="#"><i class="fas fa-user-injured"></i> <span class="menu-text">Pacientes</span></a></li>
+                    <li><a href="#"><i class="fas fa-user-md"></i> <span class="menu-text">Médicos</span></a></li>
+                    <li><a href="#"><i class="fas fa-file-medical"></i> <span class="menu-text">Prontuários</span></a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> <span class="menu-text">Configurações</span></a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Sair</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="admin-content">
+            <div class="admin-header">
+                <h1>Dashboard</h1>
+                <div class="admin-user">
+                    <img src="https://i.pravatar.cc/45" alt="Usuário">
+                    <span>Dr. Carlos Silva</span>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: var(--primary);">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>48</h3>
+                        <p>Consultas Hoje</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: var(--secondary);">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1,542</h3>
+                        <p>Pacientes Ativos</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: var(--accent);">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>28</h3>
+                        <p>Médicos</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #ea4335;">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>5</h3>
+                        <p>Urgências</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="data-table">
+                <div class="table-header">
+                    <h2>Próximas Consultas</h2>
+                    <a href="#" class="btn">Ver Todas</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Médico</th>
+                            <th>Horário</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Maria Oliveira</td>
+                            <td>Dr. Carlos Silva</td>
+                            <td>09:00 - 09:30</td>
+                            <td><span class="status confirmado">Confirmado</span></td>
+                            <td>
+                                <button class="btn" style="padding: 7px 14px; font-size: 0.9rem;">Detalhes</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>João Santos</td>
+                            <td>Dra. Ana Santos</td>
+                            <td>09:30 - 10:00</td>
+                            <td><span class="status pendente">Pendente</span></td>
+                            <td>
+                                <button class="btn" style="padding: 7px 14px; font-size: 0.9rem;">Detalhes</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ana Costa</td>
+                            <td>Dr. Roberto Oliveira</td>
+                            <td>10:00 - 10:30</td>
+                            <td><span class="status confirmado">Confirmado</span></td>
+                            <td>
+                                <button class="btn" style="padding: 7px 14px; font-size: 0.9rem;">Detalhes</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pedro Almeida</td>
+                            <td>Dra. Mariana Costa</td>
+                            <td>10:30 - 11:00</td>
+                            <td><span class="status cancelado">Cancelado</span></td>
+                            <td>
+                                <button class="btn" style="padding: 7px 14px; font-size: 0.9rem;">Detalhes</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA DE LOGIN -->
+    <div class="login-container" style="display: none;">
+        <div class="login-side">
+            <div class="login-side-content">
+                <h2>Área Administrativa</h2>
+                <p>Acesse o sistema para gerenciar consultas, pacientes e toda a operação da Clínica Araguari com segurança e eficiência.</p>
+            </div>
+        </div>
+        <div class="login-form-container">
+            <div class="login-form">
+                <div class="login-logo">
+                    <h1>Clínica <span>Araguari</span></h1>
+                    <p>Área Restrita</p>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="login-email">E-mail</label>
+                        <input type="email" id="login-email" class="form-control" placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Senha</label>
+                        <input type="password" id="login-password" class="form-control" placeholder="Sua senha">
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Lembrar-me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Esqueci minha senha</a>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu mobile toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+
+        // Para demonstrar as diferentes áreas, você pode usar:
+        // document.querySelector('.admin-container').style.display = 'flex'; // Para mostrar área admin
+        // document.querySelector('.login-container').style.display = 'flex'; // Para mostrar login
+    </script>
+</body>
+</html>
