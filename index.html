@@ -3,119 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Área Administrativa - Clínica Médica</title>
-    <!-- Use the same Bootstrap and styles as your main page -->
+    <title>Login - Clínica Araguari</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Reuse your existing color scheme */
-        .bg-primary { background-color: #0d6efd !important; }
-        .btn-primary { background-color: #0d6efd; border-color: #0d6efd; }
-        .btn-success { background-color: #20c997; border-color: #20c997; }
-        .text-teal { color: #20c997; }
-        
-        /* Admin specific styles */
-        .admin-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+        :root {
+            --primary-blue: #0d6efd;
+            --teal: #20c997;
         }
-        .admin-card:hover {
-            transform: translateY(-5px);
+        
+        .bg-primary { background-color: var(--primary-blue) !important; }
+        .btn-primary { 
+            background-color: var(--primary-blue); 
+            border-color: var(--primary-blue); 
+        }
+        .btn-success { 
+            background-color: var(--teal); 
+            border-color: var(--teal); 
+        }
+        .text-teal { color: var(--teal); }
+        
+        .login-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--teal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: white;
+        }
+        
+        .login-header {
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .form-control:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.25);
         }
     </style>
 </head>
 <body>
-    <!-- Header similar to main page but simplified -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="login-container">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fas fa-stethoscope me-2"></i>Clínica Médica
-            </a>
-        </div>
-    </nav>
-
-    <!-- Admin Dashboard -->
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="text-center mb-4">Área Administrativa</h1>
-                
-                <!-- Quick Stats -->
-                <div class="row mb-4">
-                    <div class="col-md-3 mb-3">
-                        <div class="card admin-card bg-primary text-white">
-                            <div class="card-body text-center">
-                                <h3>150</h3>
-                                <p>Pacientes Hoje</p>
-                            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-card">
+                        <div class="login-header">
+                            <i class="fas fa-stethoscope fa-3x mb-3"></i>
+                            <h2>Clínica Araguari</h2>
+                            <p class="mb-0">Área Administrativa</p>
                         </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card admin-card bg-success text-white">
-                            <div class="card-body text-center">
-                                <h3>12</h3>
-                                <p>Médicos Ativos</p>
-                            </div>
+                        
+                        <div class="card-body p-4">
+                            <form id="loginForm">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Senha</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                        <input type="password" class="form-control" id="password" placeholder="Sua senha" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="remember">
+                                    <label class="form-check-label" for="remember">Lembrar-me</label>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary w-100 py-2">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Entrar
+                                </button>
+                                
+                                <div class="text-center mt-3">
+                                    <a href="#" class="text-decoration-none text-teal">Esqueci minha senha</a>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card admin-card bg-warning text-white">
-                            <div class="card-body text-center">
-                                <h3>8</h3>
-                                <p>Consultas Pendentes</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card admin-card bg-info text-white">
-                            <div class="card-body text-center">
-                                <h3>R$ 15,240</h3>
-                                <p>Faturamento Diário</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Admin Actions -->
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <div class="card admin-card">
-                            <div class="card-body">
-                                <h5 class="card-title text-teal">Gerenciar Pacientes</h5>
-                                <button class="btn btn-primary me-2">Ver Todos</button>
-                                <button class="btn btn-success">Novo Paciente</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="card admin-card">
-                            <div class="card-body">
-                                <h5 class="card-title text-teal">Agendamentos</h5>
-                                <button class="btn btn-primary me-2">Ver Agenda</button>
-                                <button class="btn btn-success">Novo Agendamento</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="card admin-card mt-4">
-                    <div class="card-body">
-                        <h5 class="card-title text-teal">Atividade Recente</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item">João Silva - Consulta marcada para 14:30</li>
-                            <li class="list-group-item">Maria Santos - Exame agendado</li>
-                            <li class="list-group-item">Dr. Carlos - Adicionou nova prescrição</li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Same scripts as main page -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script>
+        // Simple login simulation - just redirects to admin page
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple loading simulation
+            const button = this.querySelector('button');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Entrando...';
+            button.disabled = true;
+            
+            // Simulate login process
+            setTimeout(function() {
+                // Redirect to admin page
+                window.location.href = 'admin.html';
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
