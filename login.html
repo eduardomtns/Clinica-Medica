@@ -108,19 +108,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Simple login simulation - just redirects to admin page
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Simple loading simulation
             const button = this.querySelector('button');
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Entrando...';
             button.disabled = true;
             
-            // Simulate login process
             setTimeout(function() {
-                // Redirect to admin page
                 window.location.href = 'admin.html';
             }, 1500);
         });
